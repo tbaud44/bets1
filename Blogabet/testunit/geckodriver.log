@@ -1,0 +1,6 @@
+1506000797087	geckodriver	INFO	geckodriver 0.18.0
+1506000797090	geckodriver	INFO	Listening on 127.0.0.1:54065
+1506000797220	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1506000799114	Marionette	INFO	Listening on port 36017
+1506000799169	Marionette	WARN	TLS certificate errors will be ignored for this session
+1506000808057	Marionette	INFO	Ceased listening
