@@ -16,6 +16,7 @@ from transverse.BlogabetException import BlogException, BlogWarning
 from transverse.Util import Util
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import WebDriverException
 from transverse import BlogabetException
 from Modele.Tip import Tip
 
@@ -143,11 +144,11 @@ class TipsManager(object):
             if tip.status.value==2:
                 return 'darkgreen' #c'est bon le tip est pris
             if tip.status.value==3:
-                return 'palegreen' #c'est bon le tip est pris
+                return 'palegreen' #le tip est absent
             if tip.status.value==4:
-                return 'palegreen' #c'est bon le tip est pris
+                return 'palegreen' #le tip est refuse
             if tip.status.value==1:
-                return 'green' #c'est bon le tip est pris
+                return 'dimgrey' #le tip est en attente
             
         else:
             if tip.status.value==2:
@@ -166,9 +167,15 @@ class TipsManager(object):
         '''
         print ('Debut recherche tips ')
         driver = self.driver
-        driver.get(self.base_url + "/tips")
-        #p1 = driver.find_element_by_tag_name("BODY").text
-        
+        try:
+            driver.get(self.base_url + "/tips")
+        except WebDriverException:
+            #relancer le firefox
+            print ('Plantage de firefox ')
+            driver.close()
+            self.initfirefox()    
+            #on quitte pour relancer la recherche au prochain appel
+            return
         #p3 = driver.find_elements(By.XPATH, '/html/body/div[2]/div/div[3]/div/div/div[1]/div/div[2]/div/ul')
         #attendre 10 sec que la page se charge
         
