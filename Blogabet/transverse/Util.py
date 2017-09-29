@@ -12,7 +12,7 @@ from urllib.request import pathname2url
 
 
 class Util:
-    """Une classe utilitaire"""
+    """Une classe utilitaire fourre tout"""
      
     config = configparser.ConfigParser()
     configDejaLue = False
